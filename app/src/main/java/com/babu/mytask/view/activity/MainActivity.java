@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<InformationData> informationDataArrayList;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //initialize id
-     void initialiseView() {
+    void initialiseView() {
         ButterKnife.bind(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -104,18 +103,11 @@ public class MainActivity extends AppCompatActivity {
                 if (getSupportActionBar() != null) {
                     getSupportActionBar().setTitle(fact.getTitle());
                 }
-                //actionBar.setTitle(fact.getTitle());
-                if (fact.getInformationData() != null && fact.getInformationData().size()>0)
+                if (fact.getInformationData() != null && fact.getInformationData().size() > 0)
                     informationDataArrayList.addAll(parseInformation(fact.getInformationData()));
             }
         } else {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getApplicationContext(), response.error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
+            Toast.makeText(getApplicationContext(), response.error.getMessage(), Toast.LENGTH_SHORT).show();
         }
         informationListAdapter.notifyDataSetChanged();
     }

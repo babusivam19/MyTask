@@ -1,5 +1,7 @@
 package com.babu.mytask.view.activity;
 
+import android.support.test.annotation.UiThreadTest;
+import android.support.test.filters.LargeTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -50,6 +52,7 @@ public class MainActivityTest {
     }
 
     @Test
+    @UiThreadTest
     public void dataLoadingFailed() {
         activity.updateResponse(Response.error(null, new Throwable("Something went wrong")));
         assertEquals(activity.informationListAdapter.getItemCount(), 0);
